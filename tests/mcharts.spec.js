@@ -10,7 +10,7 @@ test.describe('Mcharts Header', () => {
 	});
 
 	test('should display the version number', async ({ page }) => {
-		await expect(page.locator('.header-info')).toContainText(/v\d+\.\d+\.\d+/);
+		await expect(page.locator('.header-info')).toContainText(/(Version |v)\d+\.\d+\.\d+/);
 	});
 
 	test('should contain a link to the source code', async ({ page }) => {

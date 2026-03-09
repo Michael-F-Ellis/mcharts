@@ -29,23 +29,25 @@ function render() {
 		rowEl.className = 'chart-row';
 		rowEl.dataset.index = index;
 
-		const chordsInput = document.createElement('input');
-		chordsInput.type = 'text';
+		const chordsInput = document.createElement('textarea');
 		chordsInput.className = 'cell-chords';
 		chordsInput.value = row.chords;
+		chordsInput.rows = 1;
 		chordsInput.addEventListener('input', (e) => {
 			chartRows[index].chords = e.target.value;
+			autoResize(e.target);
 			if (index === chartRows.length - 1 && e.target.value !== '') {
 				addRow();
 			}
 		});
 
-		const lyricsInput = document.createElement('input');
-		lyricsInput.type = 'text';
+		const lyricsInput = document.createElement('textarea');
 		lyricsInput.className = 'cell-lyrics';
 		lyricsInput.value = row.lyrics;
+		lyricsInput.rows = 1;
 		lyricsInput.addEventListener('input', (e) => {
 			chartRows[index].lyrics = e.target.value;
+			autoResize(e.target);
 			if (index === chartRows.length - 1 && e.target.value !== '') {
 				addRow();
 			}
@@ -54,7 +56,16 @@ function render() {
 		rowEl.appendChild(chordsInput);
 		rowEl.appendChild(lyricsInput);
 		El.editor.appendChild(rowEl);
+
+		// Initial resize
+		autoResize(chordsInput);
+		autoResize(lyricsInput);
 	});
+}
+
+function autoResize(textarea) {
+	textarea.style.height = 'auto';
+	textarea.style.height = textarea.scrollHeight + 'px';
 }
 
 function addRow() {

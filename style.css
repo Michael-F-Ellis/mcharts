@@ -117,6 +117,8 @@ main {
 	font-family: inherit;
 	resize: none;
 	overflow: hidden;
+	display: block;
+	width: 100%;
 }
 
 .cell-chords {
@@ -176,6 +178,6 @@ button:hover {
 	}
 
 	.chart-row {
-		border-bottom: 1px solid #000;
+		border-bottom: 1px solid #ccc;
 	}
 }
